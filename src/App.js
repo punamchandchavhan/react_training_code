@@ -7,20 +7,27 @@ import Text from './components/Text'
 function App() {
   const [value, setValue] = useState("")
   const [message, setMessage] = useState("")
+
   const handleChange = value => {
     setValue(value)
   }
+
   const handleClick = () => {
     if(value === "") {
-      alert("Empty message")
+      alert("Empty ")
     }
     setMessage(value)
   }
+  
   return (
     <div className="App">
       <InputText placeholder="Enter Input text" value={value} handleChange={handleChange}/>
+
       <Button label="Submit and Display" handleClick={handleClick}/>
-      {message && <Text message={message} />}
+
+      <Text />
+      {message}
+      
     </div>
   );
 }
