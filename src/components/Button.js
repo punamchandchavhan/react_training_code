@@ -1,11 +1,12 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
 function Button(props) {
     return (
         <div>
-            <button onClick={props.handleClick}>{props.label}</button>
+            <button className="btn btn-primary" onClick={props.handleClick}>{props.label}</button>
         </div>
     )
 }

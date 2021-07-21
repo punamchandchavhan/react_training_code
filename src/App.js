@@ -1,35 +1,46 @@
-import React, {useState} from 'react';
+import React, { Component } from 'react'
 import './App.css';
 import InputText from './components/InputText';
 import Button from './components/Button';
 import Text from './components/Text'
 
-function App() {
-  const [value, setValue] = useState("")
-  const [message, setMessage] = useState("")
-
-  const handleChange = value => {
-    setValue(value)
-  }
-
-  const handleClick = () => {
-    if(value === "") {
-      alert("Empty ")
+export class App extends Component {     //making class component done.
+    constructor(props){
+        super(props)
+        this.state = {
+            value: "",
+            message: ""
+        }
     }
-    setMessage(value)
-  }
-  
-  return (
-    <div className="App">
-      <InputText placeholder="Enter Input text" value={value} handleChange={handleChange}/>
-
-      <Button label="Submit and Display" handleClick={handleClick}/>
-
-      <Text />
-      {message}
-      
-    </div>
-  );
+    handleChange = value => {
+        this.setState({
+            value
+        })
+    }
+    
+    handleClick = () => {
+        if(this.state.value === "") {
+          alert("Empty Text ")
+        }
+        this.setState({
+            message: this.state.value
+        })
+    }
+    render() {
+        return (
+            
+            <div className="App">
+            <h1 className="pageHeading">Day_1 Assignemnt </h1>
+            <InputText placeholder="Enter Input text" value={this.state.value} handleChange={this.handleChange}/>
+            <br/>
+            <Button label="Submit and Display" handleClick={this.handleClick}/>
+            <br/>
+            <Text message={this.state.message}/>  
+            
+            </div>
+        
+        )
+    }
 }
 
-export default App;
+export default App
