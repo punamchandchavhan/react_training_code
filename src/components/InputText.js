@@ -1,13 +1,15 @@
 import React from 'react'
 
-
-function InputText(props) {
-    return (
-        <div>
-          <input type="text" value={props.value} placeholder={props.placeholder} 
-          onChange={e => props.handleChange(e.target.value)} />
-        </div>
-    )
+class InputText extends React.Component {
+    render() {
+        return (
+            <div>
+                <label>
+                    Name : <input type="text" placeholder="Enter input" value={this.props.name} onChange={this.props.handleInput} required />
+                </label>
+            </div>
+        );
+    } 
 }
 
-export default InputText;
+export default InputText
