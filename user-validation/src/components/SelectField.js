@@ -13,4 +13,4 @@ class SelectField extends React.Component {
     } 
 }
 
-export default SelectField
+export default SelectField;
