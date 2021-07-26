@@ -5,7 +5,7 @@ class Range extends React.Component {
 	render() {
 		return (
 			<div className="slider-class">
-				<Slider value={this.props.value} onChange={this.props.updateRange} required />
+				<Slider value={this.props.value} onChange={this.props.updateRange} />
 			</div>
 		);
 	}

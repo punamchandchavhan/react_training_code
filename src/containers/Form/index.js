@@ -7,6 +7,7 @@ import DateField from '../../components/DateField.js'
 import FileUpload from '../../components/FileUpload';
 import PasswordField from '../../components/PasswordField.js'
 import Table from './components/Table.js'
+import Submit from '../../components/Submit';
 
 class Form extends React.Component {
 	constructor(props) {
@@ -16,7 +17,7 @@ class Form extends React.Component {
 			fields: {
 				input: "",
 				email: "",
-				selectedValue: "10th",
+				selectedValue: "",
 				selectedFile: "",
 				selectedDate: "",
 				selectedRadioValue: "",
@@ -44,6 +45,11 @@ class Form extends React.Component {
 		let fields = this.state.fields
 		let errors = {}
 
+		if (!fields['input']) {
+			isFormValid = false
+			errors['input'] = "This field is required"
+		}
+		
 		if (!fields['selectedRadioValue']) {
 			isFormValid = false
 			errors['selectedRadioValue'] = "This field is required"
@@ -53,15 +59,40 @@ class Form extends React.Component {
 			isFormValid = false
 			errors['email'] = "Email is not valid"
 		}
-
-		if (fields['password'].length < 8) {
+		
+		if (!fields['selectedFile']) {
+			isFormValid = false
+			errors['selectedFile'] = "Upload the file"
+		}
+		
+		if (!fields['selectedValue']) {
+			isFormValid = false
+			errors['selectedValue'] = "Select value is required"
+		}
+        if (!fields['password']) {
+			isFormValid = false
+			errors['password'] = "Password field is required"
+		}
+        
+		else
+		{if(fields['password'].length < 8) {
 			isFormValid = false
 			errors['password'] = "Password is too short"
+		}}
+        
+		if (!fields['cpassword']) {
+			isFormValid = false
+			errors['cpassword'] = "Cpassword field required"
 		}
-
+		
 		if (fields['cpassword'] !== fields['password']) {
 			isFormValid = false
 			errors['cpassword'] = "Password does not match"
+		}
+        
+		if (!fields['selectedDate']) {
+			isFormValid = false
+			errors['selectedDate'] = "Select date"
 		}
 
 		if (new Date().toISOString().split('T')[0] < fields['selectedDate']) {
@@ -85,7 +116,7 @@ class Form extends React.Component {
 			let resetFields = {
 				input: "",
 				email: "",
-				selectedValue: "10th",
+				selectedValue: "",
 				selectedFile: "",
 				selectedDate: "",
 				selectedRadioValue: "",
@@ -201,7 +232,7 @@ class Form extends React.Component {
 								<br/><br/>
 							</div>
 
-							<input type="submit" value="Submit" className="btn btn-outline-success" />
+							<Submit />
 						</form>
 					</div>
 					<div className="col-lg-7">
