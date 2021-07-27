@@ -54,11 +54,16 @@ class Form extends React.Component {
 			isFormValid = false
 			errors['selectedRadioValue'] = "This field is required"
 		}
-
+		if (!fields['email']) {
+			isFormValid = false
+			errors['email'] = "Email field is required"
+		}
+        
+		else{
 		if (!fields['email'].match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
 			isFormValid = false
 			errors['email'] = "Email is not valid"
-		}
+		}}
 		
 		if (!fields['selectedFile']) {
 			isFormValid = false
